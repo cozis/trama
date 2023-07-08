@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Trama - Log-in</title>
+        <style>
+            header {
+                overflow: auto;
+            }
+            header table {
+                float: left;
+            }
+            header table:last-child {
+                float: right;
+            }
+            header table td {
+                padding-left: 10px;
+            }
+            header table td:first-child {
+                padding-left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <table>
+                <tr>
+                    <td><a href="/groups">Groups</a></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    {% if logged %}
+                    <td><a href="/users/{{username}}">{{username}}</a></td>
+                    {% else %}
+                    <td><a href="/login">Log-in</a></td>
+                    {% end %}
+                </tr>
+            </table>
+        </header>
+        <main>
+            {% if error %}
+            <a>{{message}}</a>
+            {% end %}
+            <form method="POST" action="/login">
+                <input type="text" name="name" placeholder="name" />
+                <input type="password" name="pass" placeholder="pass" />
+                <input type="submit" value="enter" />
+            </form>
+        </main>
+    </body>
+</html>

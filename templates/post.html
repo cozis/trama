@@ -1,0 +1,345 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Hello, world!</title>
+		<style>
+			body 
+			{
+				font-size: 16px;
+				font-family: monospace;
+			}
+
+			#main-container 
+			{
+				max-width: 95%;
+				width: 900px;
+				margin: auto;
+			}
+
+			#page-content
+			{
+				padding: 5px 20px;
+				background: #ffefb5;
+				border-radius: 3px;
+			}
+
+			#post,
+			.reply
+			{
+				border-bottom: 1px dashed #cda66b;
+				padding: 5px;
+				padding-bottom: 10px;
+				margin-bottom: 10px;
+				color: #cda66b;
+			}
+
+			#post:last-child,
+			.reply:last-child
+			{
+				border-bottom: 0;
+			}
+
+			#post-meta
+			{
+				text-align: center;
+				padding: 3px 10px;
+			}
+
+			#post-content,
+			.reply-content
+			{
+				padding: 10px;
+				color: #000;
+				line-height: 160%;
+			}
+
+			#post-content ul,
+			.reply-content ul
+			{
+				margin: 0;
+				padding-left: 20;
+			}
+
+			#post-content ul li,
+			.reply-content ul li
+			{
+				margin-bottom: 20px;
+			}
+
+			#post-content ul li:last-child,
+			.reply-content ul li:last-child
+			{
+				margin-bottom: 0;
+			}
+
+			#post-ctls,
+			.reply-ctls
+			{
+				overflow: auto;
+				/*padding: 5px;*/
+			}
+
+			#post-ctls a:hover,
+			.reply-ctls a:hover {
+				background: yellow;
+			}
+
+			.reply-set 
+			{
+				padding-left: 20px;
+				border-left: 3px solid #e4d1b4;
+			}
+
+			a.active {
+				background: #96ff61;
+			}
+
+			a:link
+			{
+				color: #6b7dcd;
+			}
+
+			a:visited
+			{
+				color: #c56bcd;
+			}
+
+			.left  { float:  left; }
+			.right { float: right; }
+
+			nav 
+			{
+				overflow: auto;
+				padding: 10px;
+				/*background: #ff7561;*/
+				/*background: #b4bfe4;*/
+				background: #899bd6;
+				border-radius: 3px;
+			}
+
+			nav a:link,
+			nav a:visited
+			{
+				color: black;
+			}
+
+			nav a:hover
+			{
+				color: #333;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main-container">
+			
+			<nav>
+				<div class="left">
+					[<a href="">Tutti</a> | <a href="">Seguiti</a> | <a href="">Cerca</a>]
+				</div>
+				<div class="right">
+					[ <a href="">Cozis</a> | <a href="">Esci</a> ]
+				</div>
+			</nav>
+
+			<br>
+
+			<div id="page-content">
+
+				<div id="post">
+
+					<div id="post-content">
+						So Redis is an in-memory database. The advantage is that the ram 
+on a machine can perform operations at less that a billionth of a 
+second, way faster than a traditional database.
+
+						<br>
+						<br>
+
+						Question 1: what if the ram is powered off?? You would lose your 
+data. Now I'm assuming it gets backed up to permanent storage 
+frequently, how often can that happen?
+
+						<br>
+						<br>
+
+						Question 2: if losing memory isn't an issue, why would anyone ever not use a redis database?
+					</div>
+
+					<div id="post-ctls" class="ctls">
+						<div class="left">
+							Utente: <a href="">shaxitive</a>,
+							Gruppo: <a href="">AskProgramming</a>,
+							Data: 19 Febbraio 2022
+						</div>
+						<div class="right">
+							<!--[<a href="">Condividi</a>]-->
+							[<a href="">Salva</a>]
+							[<a href="">Rispondi</a>]
+						</div>
+					</div>
+				</div>
+
+				<div class="reply-set">
+
+					<div class="reply">
+						
+						<div class="reply-content">
+							Yes you would lose data. Data can get saved as often as you want 
+(https://redis.io/topics/persistence), but is a trade-off between 
+performance and how much data you lose.
+
+							<br>
+							<br>
+
+							Redis is great as cache or storage for temporary data, not as primary storage.
+						</div>
+
+						<div class="reply-ctls ctls">
+							<div class="left">
+								Utente: <a href="">lethri</a>,
+								Data: Venerdì, 19 Febbraio 2022
+							</div>
+							<div class="right">
+								[<a href="">Salva</a>]
+								[<a href="">Rispondi</a>]
+							</div>
+						</div>
+					</div>
+
+					<div class="reply-set">
+						<div class="reply">					
+							<div class="reply-content">
+								Ok, I am having a hard time finding a use-case where it would be
+ ok where we can lose data that wouldn't really impact the integrity of 
+the system. could you possibly provide examples? I am having a hard time
+ understanding with using google to learn
+							</div>
+
+							<div class="reply-ctls ctls">
+								<div class="left">
+									Utente: <a href="">shaxitive</a>,
+									Data: Venerdì, 19 Febbraio 2022
+								</div>
+								<div class="right">
+									[<a href="">Salva</a>]
+									[<a href="">Rispondi</a>]
+								</div>
+							</div>
+						</div>
+
+						<div class="reply-set">
+							<div class="reply">					
+								<div class="reply-content">
+									<ul>
+										<li>Session data: if you lose that, your users would just have to log in again.</li>
+	    								<li>Cached data (like results from a long and/or 
+complicated query): if you lose that, it probably wouldn't impact 
+anything, besides that it would take longer the first time it tries to 
+fetch that data.</li>
+	    							</ul>
+								</div>
+
+								<div class="reply-ctls ctls">
+									<div class="left">
+										Utente: <a href="">YoCodingJosh</a>,
+										Data: Venerdì, 19 Febbraio 2022
+									</div>
+									<div class="right">
+										[<a href="" class="active">Salva</a>]
+										[<a href="">Rispondi</a>]
+									</div>
+								</div>
+							</div>
+
+							<div class="reply">
+
+								<div class="reply-content">
+									Let’s say you have a users table and an email_addresses table 
+with a foreign key relationship. When fetching user data, we almost 
+always need to include their email address in the HTTP response. I could
+ just join those tables every time I need a user resource. Since a 
+user’s email address rarely changes, however, it’s an ideal candidate 
+for caching. We store a user’s email addresses in a redis key:value pair
+ so that We don’t have to join those tables anymore, saving us some CPU 
+cycles on my SQL server and yielding some latency improvements. And if 
+redis becomes unavailable for whatever reason, we fall back to the 
+database.
+									<br>
+									<br>
+									For many apps, this probably an unnecessary optimization, but 
+for some networks the resource savings could be significant in the 
+aggregate.
+									<br>
+									<br>
+									That’s just one example, there are other use cases
+								</div>
+
+								<div class="reply-ctls ctls">
+									<div class="left">
+										Utente: <a href="">jdauriemma</a>,
+										Data: Venerdì, 19 Febbraio 2022
+									</div>
+									<div class="right">
+										[<a href="">Salva</a>]
+										[<a href="">Rispondi</a>]
+									</div>
+								</div>
+							</div>
+
+							<div class="reply-set">
+								
+								<div class="reply">
+									<div class="reply-content">
+										Ok, a scenario that i was thinking about would perhaps be like
+ a geospatial information system where it needs to be constantly 
+updating the geopatial data of different airplanes. A relational 
+database could do this but geospatial coordinates would be getting 
+updated much faster with redis.
+										<br>
+										<br>
+										Is this a good use-case? If so what would be the way a plane 
+would transmit that data? I imagine http calls wouldn't be an ideal way 
+at all since it would be making it constantly, and message brokers like 
+kafka wouldn't work either because every message is saved.
+									</div>
+
+									<div class="reply-ctls ctls">
+										<div class="left">
+											Utente: <a href="">shaxitive</a>,
+											Data: Venerdì, 19 Febbraio 2022
+										</div>
+										<div class="right">
+											[<a href="">Salva</a>]
+											[<a href="">Rispondi</a>]
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+						</div>
+					</div>
+
+					<div class="reply">
+
+						<div class="reply-content">
+							Hellp, world!
+						</div>
+
+						<div class="reply-ctls ctls">
+							<div class="left">
+								Utente: <a href="">cozis</a>,
+								Data: Venerdì, 19 Febbraio 2022
+							</div>
+							<div class="right">
+								[<a href="">Salva</a>]
+								[<a href="">Rispondi</a>]
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	
+</body></html>

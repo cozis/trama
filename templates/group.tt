@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Trama - {{group.name}}</title>
+        <style>
+            header {
+                overflow: auto;
+            }
+            header table {
+                float: left;
+            }
+            header table:last-child {
+                float: right;
+            }
+            header table td {
+                padding-left: 10px;
+            }
+            header table td:first-child {
+                padding-left: 0;
+            }
+            #post-list {
+                width: 400px;
+                border: 1px solid #ccc;
+            }
+            #post-list tr:first-child td {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <table>
+                <tr>
+                    <td><a href="/groups">Groups</a></td>
+                    <td><a href="/groups/{{group.name}}">{{group.name}}</a></td>
+                    {% if logged %}
+                    <td><a href="/groups/{{group.name}}/create_post">Create post</a></td>
+                    {% end %}
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    {% if logged %}
+                    <td><a href="/users/{{username}}">{{username}}</a></td>
+                    {% else %}
+                    <td><a href="/login">Log-in</a></td>
+                    {% end %}
+                </tr>
+            </table>
+        </header>
+        <main>
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>Description</td>
+                </tr>
+                <tr>
+                    <td>{{group.name}}</td>
+                    <td>{{group.desc}}</td>
+                </tr>
+            </table>
+            <table id="post-list">
+                <tr>
+                    <td>Author</td>
+                    <td>Votes</td>
+                    <td>Title</td>
+                    <td>Body</td>
+                </tr>
+                {% for post in posts %}
+                <tr>
+                    <td>{{post.author}}</td>
+                    <td><font color="green">{{post.upvote}}</font>/<font color="red">{{post.downvote}}</font></td>
+                    <td><a href="/posts/{{post.id}}">{{post.title}}</a></td>
+                    <td>{{post.body}}</td>
+                </tr>
+                {% end %}
+            </table>
+        </main>
+    </body>
+</html>

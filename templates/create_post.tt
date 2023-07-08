@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Trama - create post in {{group.name}}</title>
+        <style>
+            header {
+                overflow: auto;
+            }
+            header table {
+                float: left;
+            }
+            header table:last-child {
+                float: right;
+            }
+            header table td {
+                padding-left: 10px;
+            }
+            header table td:first-child {
+                padding-left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <table>
+                <tr>
+                    <td><a href="/groups">Groups</a></td>
+                    <td><a href="/groups/{{group.name}}">{{group.name}}</a></td>
+                    {% if logged %}
+                    <td><a href="/groups/{{group.name}}/create_post">Create post</a></td>
+                    {% end %}
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    {% if logged %}
+                    <td><a href="/users/{{username}}">{{username}}</a></td>
+                    {% else %}
+                    <td><a href="/login">Log-in</a></td>
+                    {% end %}
+                </tr>
+            </table>
+        </header>
+        <main>
+            {% if error %}
+            <a>{{message}}</a>
+            {% end %}
+            <form action="/groups/{{group.name}}/create_post" method="POST">
+                <input type="text" name="group" readonly value="{{group.name}}" />
+                <input type="text" name="title" placeholder="title" />
+                <textarea name="body" placeholder="content"></textarea>
+                <input type="submit" value="publish" />
+            </form>
+        </main>
+    </body>
+</html>
